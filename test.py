@@ -6,6 +6,7 @@ otp = input(f"SMS : :{paypay.otp_prefix}-")
 paypay_login(paypay, otp)
 
 print(paypay.access_token)
+#アクセストークンは数か月の期限があります、切れた場合ログインに使用できません。
 print(paypay.client_uuid)
 
 link_info = paypay_link_check(paypay, f"https://pay.paypay.ne.jp/{後半の値}")
