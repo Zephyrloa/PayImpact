@@ -25,7 +25,7 @@ def paypay_link_check(session, url):
 
 def paypay_link_receive(session, url, password=None, link_info=None):
     if not session.access_token:
-        raise PayPayLoginError("まずはログインしてください")
+        raise PayPayLoginError("ログインしてください")
     
     if "https://" in url:
         url = url.replace("https://pay.paypay.ne.jp/", "")
@@ -40,10 +40,9 @@ def paypay_link_receive(session, url, password=None, link_info=None):
             raise PayPayError(link_info)
     
     if link_info["payload"]["orderStatus"] != "PENDING":
-        raise PayPayError("すでに 受け取り / 辞退 / キャンセル されているリンクです")
-    
+        raise PayPayError("無効なリンクです")
     if link_info["payload"]["pendingP2PInfo"]["isSetPasscode"] and not password:
-        raise PayPayError("このリンクにはパスワードが設定されています")
+        raise PayPayError("パスワードが設定されています")
     
     payload = {
         "verificationCode": url,
@@ -60,7 +59,7 @@ def paypay_link_receive(session, url, password=None, link_info=None):
 
 def paypay_link_reject(session, url, link_info=None):
     if not session.access_token:
-        raise PayPayLoginError("まずはログインしてください")
+        raise PayPayLoginError("ログインしてください")
     
     if "https://" in url:
         url = url.replace("https://pay.paypay.ne.jp/", "")
@@ -75,7 +74,7 @@ def paypay_link_reject(session, url, link_info=None):
             raise PayPayError(link_info)
     
     if link_info["payload"]["orderStatus"] != "PENDING":
-        raise PayPayError("すでに 受け取り / 辞退 / キャンセル されているリンクです")
+        raise PayPayError("無効なリンクです")
     
     payload = {
         "verificationCode": url,
