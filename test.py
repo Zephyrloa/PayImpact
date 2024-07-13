@@ -8,7 +8,7 @@ paypay_login(paypay, otp)
 print(paypay.access_token)
 print(paypay.client_uuid)
 
-link_info = paypay_link_check(paypay, "https://pay.paypay.ne.jp/osuvUuLmQH8WA4kW")
+link_info = paypay_link_check(paypay, f"https://pay.paypay.ne.jp/{後半の値}")
 print(paypay.link_amount)
 print(paypay.link_money_light)
 print(paypay.link_money)
