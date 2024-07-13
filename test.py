@@ -1,5 +1,5 @@
 
-from PayPay import PayPaySession, paypay_login, paypay_resend_otp, paypay_get_balance, paypay_get_profile, paypay_get_history, paypay_link_check, paypay_link_receive, paypay_link_reject, paypay_create_p2pcode, paypay_create_paymentcode
+from PayImpact import PayPaySession, paypay_login, paypay_resend_otp, paypay_get_balance, paypay_get_profile, paypay_get_history, paypay_link_check, paypay_link_receive, paypay_link_reject, paypay_create_p2pcode, paypay_create_paymentcode
 
 paypay = PayPaySession(phone="08012345678", password="Test-1234")
 otp = input(f"SMS : :{paypay.otp_prefix}-")
